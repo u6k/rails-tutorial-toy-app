@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    environment:
+      #      - "RAILS_ENV=development"
+      - "DB_HOST=db"
+      - "DB_USERNAME=db_uset"
+      - "DB_PASSWORD=db_pass"
+      - "DB_DATABASE=db"
+      - "VIRTUAL_HOST=test.railstutorial.u6k.me"
+      - "VIRTUAL_PORT=3000"
+      - "LETSENCRYPT_HOST=test.railstutorial.u6k.me"
+      - "LETSENCRYPT_EMAIL=u6k.apps@gmail.com"
+    volumes:
+      - ".:/var/myapp"
+    depends_on:
+      - "db"
+    ports:
+      - "3000:3000"
+  db:
+    image: postgres:10
+    environment:
+      - "POSTGRES_USER=db_user"
+      - "POSTGRES_PASSWORD=db_pass"
+      - "POSTGRES_DB=db"
+    volumes:
+      - "db:/var/lib/postgresql/data"
+
+volumes:
+  db:
+    driver: local
+
+networks:
+  default:
+    external:
+      name: documents_default
+
