@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    environment:
+      - "RAILS_ENV=production"
+      - "SECRET_KEY_BASE=${SECRET_KEY_BASE}"
+      - "DB_HOST=${DB_HOST}"
+      - "DB_USERNAME=${DB_USERNAME}"
+      - "DB_PASSWORD=${DB_PASSWORD}"
+      - "DB_DATABASE=${DB_DATABASE}"
+      - "VIRTUAL_HOST=railstutorial.u6k.me"
+      - "VIRTUAL_PORT=3000"
+      - "LETSENCRYPT_HOST=railstutorial.u6k.me"
+      - "LETSENCRYPT_EMAIL=u6k.apps@gmail.com"
+    depends_on:
+      - "db"
+    ports:
+      - "3000:3000"
+  db:
+    image: postgres:10
+    environment:
+      - "POSTGRES_USER=${DB_USERNAME}"
+      - "POSTGRES_PASSWORD=${DB_PASSWORD}"
+      - "POSTGRES_DB=${DB_DATABASE}"
+    volumes:
+      - "db:/var/lib/postgresql/data"
+
+volumes:
+  db:
+    driver: local
+
+networks:
+  default:
+    external:
+      name: documents_default
+
