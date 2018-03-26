@@ -9,10 +9,10 @@ services:
       - "DB_USERNAME=db_user"
       - "DB_PASSWORD=db_pass"
       - "DB_DATABASE=db"
-      - "VIRTUAL_HOST=test.railstutorial.u6k.me"
-      - "VIRTUAL_PORT=3000"
-      - "LETSENCRYPT_HOST=test.railstutorial.u6k.me"
-      - "LETSENCRYPT_EMAIL=u6k.apps@gmail.com"
+      # - "VIRTUAL_HOST=test.railstutorial.u6k.me"
+      # - "VIRTUAL_PORT=3000"
+      # - "LETSENCRYPT_HOST=test.railstutorial.u6k.me"
+      # - "LETSENCRYPT_EMAIL=u6k.apps@gmail.com"
     volumes:
       - ".:/var/myapp"
     depends_on:
@@ -32,8 +32,8 @@ volumes:
   db:
     driver: local
 
-networks:
-  default:
-    external:
-      name: documents_default
+# networks:
+#   default:
+#     external:
+#       name: documents_default
 
