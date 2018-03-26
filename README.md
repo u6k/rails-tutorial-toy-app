@@ -40,6 +40,12 @@ Server:
 $ docker-compose -f docker-compose.production.yml build
 ```
 
+DBをマイグレートします。
+
+```
+$ docker-compose -f docker-compose.production.yml run app rails db:migrate
+```
+
 本番用Dockerコンテナを起動します。
 
 ```
@@ -54,6 +60,12 @@ https://railstutorial.u6k.me/users/ にアクセスすると、"Hello, world!"�
 
 ```
 $ docker-compose build
+```
+
+DBをマイグレートします。
+
+```
+$ docker-composerun app rails db:migrate
 ```
 
 開発用Dockerコンテナを起動します。
