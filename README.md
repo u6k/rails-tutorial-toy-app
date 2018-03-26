@@ -65,7 +65,7 @@ $ docker-compose build
 DBをマイグレートします。
 
 ```
-$ docker-composerun app rails db:migrate
+$ docker-compose run app rails db:migrate
 ```
 
 開発用Dockerコンテナを起動します。
