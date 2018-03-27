@@ -11,5 +11,7 @@ before_install:
   - sudo apt-get -y install docker-ce
 
 script:
-  - docker run --rm hello-world
-
+  - mv .env.example .env
+  - docker-compose -f docker-compose.production.yml build
+  - docker-compose -f docker-compose.production.yml run app rails db:migrate
+  - docker-compose -f docker-compose.production.yml down -v
